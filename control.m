@@ -53,7 +53,7 @@ Hd_H2 = feedback(Kp * H2_Qin, 1);
 [y, t] = step(Hd_H2, t);
 y = hd * y;
 ess = hd - y(end);
-plot(t, y, 'DisplayName', sprintf('Kp = %d (e_{ss} = %.3f)', Kp, ess));
+plot(t, y, 'DisplayName', sprintf('Kp = %d (e_{ss} = %.5f)', Kp, ess));
 end
 title('Effect of K_p on Tracking and e_{ss}');
 legend; grid on;
