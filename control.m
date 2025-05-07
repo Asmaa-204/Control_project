@@ -59,13 +59,14 @@ grid on;
 % 8,9. different kp values
 hd = 5;
 Kp_values = [1, 10, 100];
-figure; hold on;
+figure;
+hold on;
 for Kp = Kp_values
-Hd_H2 = feedback(Kp * H2_Qin, 1);
-[y, t] = step(Hd_H2, t);
-y = hd * y;
-ess = hd - y(end);
-plot(t, y, 'DisplayName', sprintf('Kp = %d (e_{ss} = %.5f)', Kp, ess));
+    Hd_H2 = feedback(Kp * H2_Qin, 1);
+    [y, t] = step(Hd_H2, t);
+    y = hd * y;
+    ess = hd - y(end);
+    plot(t, y, 'DisplayName', sprintf('Kp = %d (e_{ss} = %.5f)', Kp, ess));
 end
 title('Effect of K_p on Tracking and e_{ss}');
 legend; grid on; hold off;
@@ -81,6 +82,7 @@ C = tf([Kd Kp KI], [1 0]);  % Represents Kd*s + Kp + KI/s
 
 Hd_H2 = feedback(C * H2_Qin, 1)
 
+figure;
 step(6 * Hd_H2);  % Scale for 6m setpoint
 stepinfo(6 * Hd_H2)
 title(sprintf('PID Control: Kp=%.2f, KI=%.2f, Kd=%.2f', Kp, KI, Kd));
